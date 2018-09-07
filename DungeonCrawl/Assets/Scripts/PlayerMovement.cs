@@ -5,8 +5,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float moveForce = 1.0f;
     public float forceMod = 20.0f;
-	public float jumpForce = 500.0f;
-	public float min_height_ = -20.0f;
+	//public float jumpForce = 500.0f;
+	//public float min_height_ = -20.0f;
     public float adjustmentDist = 40.0f;
     public Rigidbody rigidbody;
     public float maxSpeed = 10.0f;
@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
                 WASDPressed[i] = false;
             }
         }
+
         moveVect = new Vector3(0, 0, 0);
         if (Input.GetKey(KeyCode.W))
         {
@@ -56,12 +57,10 @@ public class PlayerMovement : MonoBehaviour {
 
         rigidbody.AddRelativeForce(moveVect * forceMod);
         float velocityMagnitude = rigidbody.velocity.magnitude;
+
         if (velocityMagnitude > maxSpeed)
         {
             rigidbody.velocity = rigidbody.velocity / velocityMagnitude * maxSpeed;
         }
-        
-
-
     }
 }

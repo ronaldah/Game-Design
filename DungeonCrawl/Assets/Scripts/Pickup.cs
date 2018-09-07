@@ -44,10 +44,14 @@ public class Pickup : MonoBehaviour {
             }
             else
             {
+                if (Input.GetMouseButtonDown(0) && !Player.defending)
+                    Player.attacking = true;
                 CenterPoint.action = null;
             }
         }
         else {
+            if (Input.GetMouseButtonDown(0) && !Player.defending)
+                Player.attacking = true;
             CenterPoint.action = null;
         }
     }
