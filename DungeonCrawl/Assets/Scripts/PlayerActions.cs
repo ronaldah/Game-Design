@@ -10,6 +10,8 @@ public class PlayerActions : MonoBehaviour {
     public float maxRotEuler;
     public float shieldMoveSpeed = 0.1f;
     public float initialShildPos = -0.3f;
+    public float swordColliderGrowSpeed = 2;
+    public float initialSwordColliderSize = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -30,12 +32,13 @@ public class PlayerActions : MonoBehaviour {
             }
             else
             {
+                Player.swinging = true;
                 Player.sword.transform.Rotate(new Vector3(swingSwordSpeed, -swingSwordSpeed, 0) * Time.deltaTime);
-
                 if (Player.sword.transform.localRotation.x > 0)
                 {
                     Player.sword.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     Player.attacking = false;
+                    Player.swinging = false;
                 }
             }
         }

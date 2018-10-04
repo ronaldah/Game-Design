@@ -5,15 +5,10 @@ using System.Collections;
 
 public class Pickup : MonoBehaviour {
 
-    public GameObject EndlessRoom;
-    public GameObject FinalRoom;
     public Camera mainCamera;
     
     public int rayDistance = 5;
-    public bool hasKey = false;
-    public float roomPosX = -7.47f;
-    public float roomOffset = -7.47f;
-    public int maxRoomCount = 2;
+
     // Use this for initialization
     void Start () {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -33,7 +28,7 @@ public class Pickup : MonoBehaviour {
                 }
                 CenterPoint.action = "Pick Up";
             }
-            if (hit.transform.gameObject.tag == "Shield")
+            else if (hit.transform.gameObject.tag == "Shield")
             {
                 if (Input.GetMouseButtonDown(0))
                 {

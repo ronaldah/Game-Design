@@ -7,6 +7,7 @@ public class CenterPoint : MonoBehaviour {
     public Rect position;
     public static string action = null;
     public string test;
+
 	// Use this for initialization
 	void Start () {
   

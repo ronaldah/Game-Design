@@ -9,8 +9,12 @@ public class Player : MonoBehaviour {
     public static GameObject shield;
     public static bool hasSword = false;
     public static bool hasShield = false;
+    public static bool swinging = false;
     public static bool attacking = false;
     public static bool defending = false;
+    public static int hitPoints = 20;
+    public static int attackPower = 2;
+    public static int defensePower = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +30,7 @@ public class Player : MonoBehaviour {
 
     public void PickupWeapon()
     {
-        sword.GetComponentInChildren<CapsuleCollider>().enabled = true;
+        sword.GetComponent<BoxCollider>().enabled = true;
         sword.GetComponentInChildren<MeshRenderer>().enabled = true;
         hasSword = true;
     }
