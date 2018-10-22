@@ -164,7 +164,7 @@ MonoBehaviour:
   force: 70
   maxSpeed: 8
   closeEnoughToHome: 2
-  closeEnoughToPlayer: 3
+  closeEnoughToPlayer: 5
   patrolTime: 3
   moveVect: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
@@ -251,7 +251,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &28374880
 MonoBehaviour:
   m_ObjectHideFlags: 0
