@@ -30,7 +30,7 @@ public class Player : MonoBehaviour {
 
     public void PickupWeapon()
     {
-        sword.GetComponent<BoxCollider>().enabled = true;
+        sword.GetComponent<CapsuleCollider>().enabled = true;
         sword.GetComponentInChildren<MeshRenderer>().enabled = true;
         hasSword = true;
     }
