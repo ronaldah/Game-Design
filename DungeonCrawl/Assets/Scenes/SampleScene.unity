@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 125817653}
   - component: {fileID: 125817655}
   - component: {fileID: 125817656}
+  - component: {fileID: 125817657}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Enemy
@@ -253,6 +254,9 @@ MonoBehaviour:
   moveVect: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
   rigid: {fileID: 0}
+  closeEnoughToPlayer: 5
+  patrolTime: 3
+  anime: {fileID: 0}
 --- !u!54 &125817655
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -283,6 +287,21 @@ MonoBehaviour:
   attackPower: 5
   enemyKnockbackForce: 500
   enemyKnockbackVector: {x: 0, y: 0, z: 0}
+--- !u!111 &125817657
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125817648}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9783e056ab5184a66ad137d59eca6b4a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 9783e056ab5184a66ad137d59eca6b4a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,10 +839,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 1
+  runForceMod: 2
   forceMod: 150
   adjustmentDist: 40
   rigidbody: {fileID: 878447851}
   maxSpeed: 10
+  maxWalkSpeed: 10
+  maxRunSpeed: 20
 --- !u!54 &878447851
 Rigidbody:
   m_ObjectHideFlags: 0
