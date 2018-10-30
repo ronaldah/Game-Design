@@ -13,8 +13,23 @@ public class Player : MonoBehaviour {
     public static bool attacking = false;
     public static bool defending = false;
     public static int hitPoints = 20;
-    public static int attackPower = 2;
-    public static int defensePower = 2;
+    public static int attackPower = 5;
+    public static int defensePower = 5;
+
+    public int hp;
+
+    public static int HitPoints
+        {
+        get { return hitPoints; }
+        set {
+            hitPoints = value;
+            if (hitPoints <= 0)
+            {
+                Debug.Log(hitPoints);
+                Destroy(player);
+            }
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -25,12 +40,11 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        hp = hitPoints;
 	}
 
     public void PickupWeapon()
     {
-        sword.GetComponent<BoxCollider>().enabled = true;
         sword.GetComponentInChildren<MeshRenderer>().enabled = true;
         hasSword = true;
     }
