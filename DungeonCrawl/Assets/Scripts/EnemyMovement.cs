@@ -71,6 +71,10 @@ public class EnemyMovement : MonoBehaviour {
             if (x < closeEnoughToPlayer)
             {
                 anime.Play();
+                if (gameObject.tag == "Pumpkin")
+                {
+                    StartCoroutine(ExplodingPumpkin());
+                }
             }
         }
     }
@@ -81,6 +85,11 @@ public class EnemyMovement : MonoBehaviour {
         {
             goHome = true;
         }
+    }
+    IEnumerator ExplodingPumpkin()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 }
 
