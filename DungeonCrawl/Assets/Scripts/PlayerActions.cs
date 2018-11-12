@@ -30,12 +30,17 @@ public class PlayerActions : MonoBehaviour {
                     Player.sword.transform.localRotation = Quaternion.Euler(-maxRot, maxRot, 0);
                 }
             }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                Player.sword.GetComponent<BoxCollider>().enabled = true;
+                Player.swinging = true;
+            }
             else
             {
-                Player.swinging = true;
                 Player.sword.transform.Rotate(new Vector3(swingSwordSpeed, -swingSwordSpeed, 0) * Time.deltaTime);
                 if (Player.sword.transform.localRotation.x > 0)
                 {
+                    Player.sword.GetComponent<BoxCollider>().enabled = false;
                     Player.sword.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     Player.attacking = false;
                     Player.swinging = false;
