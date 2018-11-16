@@ -5,6 +5,8 @@
 **/[Bb]uilds/
 **/FORGE3D/*
 **/FORGE3D.meta
+**/Gaia/*
+**/Gaia.meta
 # Created by https://www.gitignore.io/api/unity,visualstudio
 **/ProjectSettings/ProjectVersion.txt
 ### Unity ###

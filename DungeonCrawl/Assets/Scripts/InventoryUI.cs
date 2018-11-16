@@ -6,10 +6,7 @@ using UnityEngine.SceneManagement;
 public class InventoryUI : MonoBehaviour {
     
     public Transform itemsParent;
-
-    Inventory inventory;
-
-    public static bool inventoryVisible = false;
+    private bool inventoryVisible = false;
     public GameObject inventoryUI;
 
     // Use this for initialization
@@ -36,16 +33,24 @@ public class InventoryUI : MonoBehaviour {
         }
     }
 
-        public void closeInventory()
-        {
-            inventoryUI.SetActive(false);
-            Time.timeScale = 1f;
-            inventoryVisible = false;
-        }
-        void openInventory()
-        {
-            inventoryUI.SetActive(true);
-            Time.timeScale = 0f;
-            inventoryVisible = true;
-        }
+    public void closeInventory()
+    {
+        inventoryUI.SetActive(false);
+        //Time.timeScale = 1f;
+        inventoryVisible = false;
+
+        //Default cursor back to center point
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    public void openInventory()
+    {
+        inventoryUI.SetActive(true);
+        //Time.timeScale = 0f;
+        inventoryVisible = true;
+
+        //Turn Cursor on
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }

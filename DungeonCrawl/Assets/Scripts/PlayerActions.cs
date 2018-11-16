@@ -9,7 +9,7 @@ public class PlayerActions : MonoBehaviour {
     public float swingSwordSpeed = 100;
     public float maxRotEuler;
     public float shieldMoveSpeed = 0.1f;
-    public float initialShieldPos = -0.3f;
+    public float initialShildPos = -0.3f;
     public float swordColliderGrowSpeed = 2;
     public float initialSwordColliderSize = 0.5f;
 
@@ -63,9 +63,9 @@ public class PlayerActions : MonoBehaviour {
             {
                 Vector3 pos = Player.shield.transform.localPosition;
                 Player.shield.transform.localPosition = new Vector3(pos.y * 2 - shieldMoveSpeed * Time.deltaTime, pos.y - shieldMoveSpeed * Time.deltaTime, pos.z);
-                if (Player.shield.transform.localPosition.x < initialShieldPos)
+                if (Player.shield.transform.localPosition.x < initialShildPos)
                 {
-                    Player.shield.transform.localPosition = new Vector3(initialShieldPos, initialShieldPos/2, pos.z);
+                    Player.shield.transform.localPosition = new Vector3(initialShildPos, initialShildPos/2, pos.z);
                     Player.defending = false;
                 }
             }
