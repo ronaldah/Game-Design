@@ -62,13 +62,13 @@ public class PlayerMovement : MonoBehaviour {
         {
             moveVect += new Vector3(moveForce, 0, 0);
         }
-        if (Mathf.Abs(moveVect.x) + Mathf.Abs(moveVect.y) > moveForce)
+        if (Mathf.Abs(moveVect.x) + Mathf.Abs(moveVect.z) > moveForce)
         {
             moveVect = new Vector3(moveVect.x / magnitudeForce, 0, moveVect.z / magnitudeForce);
         }
 
         rigidbody.AddRelativeForce(moveVect * forceMod);
-        float velocityMagnitude = rigidbody.velocity.magnitude;
+        float velocityMagnitude = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z).magnitude;
 
         if (velocityMagnitude > maxSpeed)
         {
