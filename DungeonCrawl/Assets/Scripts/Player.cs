@@ -45,10 +45,6 @@ public class Player : MonoBehaviour {
 
     public void PickupWeapon()
     {
-<<<<<<< HEAD
-        sword.GetComponent<CapsuleCollider>().enabled = true;
-=======
->>>>>>> 59e243275eb1fb8209788ce0e94d86e8edc45236
         sword.GetComponentInChildren<MeshRenderer>().enabled = true;
         hasSword = true;
     }

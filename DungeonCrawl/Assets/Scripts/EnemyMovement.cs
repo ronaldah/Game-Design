@@ -49,8 +49,7 @@ public class EnemyMovement : MonoBehaviour
             }
             moveVect *= Time.deltaTime;
             moveVect /= moveVect.magnitude;
-            float velMagnitude = rigid.velocity.magnitude;
-            velMagnitude = rigid.velocity.magnitude;
+            velMagnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
             if (velMagnitude > maxSpeed)
             {
                 rigid.velocity = rigid.velocity / velMagnitude * maxSpeed;
