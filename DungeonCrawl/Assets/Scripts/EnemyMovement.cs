@@ -19,7 +19,6 @@ public class EnemyMovement : MonoBehaviour
     public float patrolTime = 3;
     bool goHome = false;
     bool isHome = true;
-    bool animated = false;
     public Animation anime;
     float velMagnitude;
 
@@ -40,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
         gameObject.transform.localScale = temp;
         if (goHome)
         {
+            //Make the enemy return to its start position
             moveVect = startPosition - gameObject.transform.position;
             if (moveVect.magnitude <= closeEnoughToHome)
             {
@@ -62,6 +62,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            //Chase the player
             moveVect = Player.transform.position - gameObject.transform.position;
             isHome = false;
             moveVect = Player.transform.position - gameObject.transform.position;
@@ -77,13 +78,12 @@ public class EnemyMovement : MonoBehaviour
             rigid.AddRelativeForce(moveVect * force);
             if (x < closeEnoughToPlayer)
             {
-                animated = true;
+                //Play attack animation
                 anime.Play();
                 if (gameObject.tag == "Pumpkin")
                 {
                     StartCoroutine(ExplodingPumpkin());
                 }
-                animated = false;
             }
         }
     }
