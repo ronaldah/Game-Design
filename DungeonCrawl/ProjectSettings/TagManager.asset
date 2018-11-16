@@ -7,7 +7,7 @@ TagManager:
   - Weapon
   - Shield
   - Enemy
-  - Pumpkin
+  - Item
   layers:
   - Default
   - TransparentFX

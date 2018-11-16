@@ -10,12 +10,12 @@ public class GameHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         //Transform healthBarTransform = Instantiate(pfHealthBar, new Vector3(0, 10), Quaternion.identity);
         //HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
-
-
         healthSystem.Damage(50);
     }
 	
