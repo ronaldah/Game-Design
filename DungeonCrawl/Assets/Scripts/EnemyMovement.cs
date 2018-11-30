@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 temp = new Vector3(scale.x + scale_shift, scale.y + scale_shift, scale.z + scale_shift); 
+        Vector3 temp = new Vector3(scale.x + scale_shift, scale.y + scale_shift, scale.z + scale_shift);
         gameObject.transform.localScale = temp;
         if (goHome)
         {

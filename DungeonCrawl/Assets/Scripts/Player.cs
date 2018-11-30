@@ -51,6 +51,7 @@ public class Player : MonoBehaviour {
 
     public void PickupShield()
     {
+        shield.GetComponent<BoxCollider>().enabled = true;
         shield.GetComponent<MeshRenderer>().enabled = true;
         hasShield = true;
     }
