@@ -8,6 +8,7 @@ public class Pickup : MonoBehaviour {
     public Camera mainCamera;
     public int rayDistance = 5;
     Item item;
+    Player player;
 
     // Use this for initialization
     void Start() {
@@ -22,6 +23,9 @@ public class Pickup : MonoBehaviour {
         {
             if (hit.transform.gameObject.tag == "Item")
             {
+                CenterPoint.action = "Pick Up";
+
+                //Pick up Item
                 if (Input.GetMouseButtonDown(0))
                 {
           
@@ -29,17 +33,30 @@ public class Pickup : MonoBehaviour {
                     item = hit.transform.gameObject.GetComponent<Item>();
 
                     //Pick up item
-                    Inventory.AddItem(item);
+                    Debug.Log(Player.inventory);
+                    Player.inventory.AddItem(item);
+
+
                     Debug.Log("Picking up " + item.itemName);
 
                     Destroy(hit.transform.gameObject);
                 }
-                CenterPoint.action = "Pick Up";
-            }
-
+            }    
         }
     }
 }
+
+/*
+ //Drop Item
+                if (Input.GetMouseButtonDown(1))
+                {
+                    //Get raycasted gameObject to an Item object
+                    item = hit.transform.gameObject.GetComponent<Item>();
+
+                    Debug.Log("Dropping: " + item.itemName);
+                    Player.inventory.RemoveItem(item);
+                }
+*/
 
 /*
 

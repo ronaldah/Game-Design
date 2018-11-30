@@ -3,31 +3,42 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public static int numItemSlots = 32;
-    public static Sprite sprite;
-    //public static Image[] itemImages = new Image[numItemSlots];
-    public static Item[] items = new Item[numItemSlots];
-    public static InventorySlot[] inventorySlot = new InventorySlot[numItemSlots];
+    public int numItemSlots = 32;
+    public Sprite sprite;
+    public GameObject[] itemGameObjects;
 
-   
+    void Start()
+    {
+        itemGameObjects = new GameObject[numItemSlots];
+
+        for(int i =0; i<numItemSlots; i++)
+        {
+            itemGameObjects[i] = gameObject.transform.GetChild(i).transform.Find("Item").gameObject;
+        }
+      
+    }
 
     //Adding item to inventory
-    public static void AddItem(Item itemToAdd)
+    public void AddItem(Item itemToAdd)
     {
-        Debug.Log("ADDING " + itemToAdd.itemName);
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i] == null)
-            {
-                items[i] = itemToAdd;
-                Debug.Log("ADD: " + items[i].itemName + " " + items[i].cost);
+        //Debug.Log("ADDING " + itemToAdd.itemName);
+        //Debug.Log(itemGameObjects);
 
-               //inventorySlot[i].itemSprite = itemToAdd.icon;
-               //inventorySlot[i].enabled = true;
-               
-                //itemImages[i].sprite = itemToAdd.icon;
-                //itemImages[i].enabled = true;
+        for (int i = 0; i < itemGameObjects.Length; i++)
+        {
+            Item item = itemGameObjects[i].GetComponent<Item>();
+
+            //Find free inventory slot
+            if (item.icon == null)
+            {
+                item.CreateItem(itemToAdd);
+
+                itemGameObjects[i].GetComponent<Image>().sprite = item.icon;
                 return;
+            }
+            else
+            {
+                Debug.Log("Inventory Full");
             }
         }
     }
@@ -36,11 +47,11 @@ public class Inventory : MonoBehaviour
     public void RemoveItem(Item itemToRemove)
     {
         //Debug.Log("REMOVING " + itemToRemove.itemName);
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < itemGameObjects.Length; i++)
         {
-            if (items[i] == itemToRemove)
+            if (itemGameObjects[i] == itemToRemove)
             {
-                items[i] = null;
+                itemGameObjects[i] = null;
                 //itemImages[i].sprite = null;
                 //itemImages[i].enabled = false;
                 return;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public static Inventory inventory;
     public static GameObject player;
     public static GameObject sword;
     public static GameObject shield;
@@ -15,7 +16,6 @@ public class Player : MonoBehaviour {
     public static int hitPoints = 20;
     public static int attackPower = 5;
     public static int defensePower = 5;
-
     public int hp;
 
     public static int HitPoints
@@ -36,6 +36,7 @@ public class Player : MonoBehaviour {
         player = gameObject;
         sword = gameObject.transform.GetChild(0).GetChild(0).gameObject;
         shield = gameObject.transform.GetChild(0).GetChild(1).gameObject;
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
     }
 	
 	// Update is called once per frame
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour {
 
     public void PickupShield()
     {
+        shield.GetComponent<BoxCollider>().enabled = true;
         shield.GetComponent<MeshRenderer>().enabled = true;
         hasShield = true;
     }
