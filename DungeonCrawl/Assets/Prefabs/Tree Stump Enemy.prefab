@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 65042735058830674}
   m_Layer: 0
   m_Name: Tree Stump Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
+  child: {fileID: 0}
   attackPower: 2
   enemyKnockbackForce: 100
   enemyKnockbackVector: {x: 0, y: 0, z: 0}
