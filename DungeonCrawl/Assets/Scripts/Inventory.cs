@@ -9,11 +9,17 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        numItemSlots = gameObject.transform.childCount;
         itemGameObjects = new GameObject[numItemSlots];
 
-        for(int i =0; i<numItemSlots; i++)
+        for(int i = 0; i < numItemSlots; i++)
         {
-            itemGameObjects[i] = gameObject.transform.GetChild(i).transform.Find("Item").gameObject;
+            var g = gameObject.transform.GetChild(i).transform;
+            for (int j = 0; j < g.childCount; j++)
+            {
+                if (g.GetChild(j).tag == "Item")
+                    itemGameObjects[i] = g.GetChild(j).gameObject;
+            }
         }
       
     }
