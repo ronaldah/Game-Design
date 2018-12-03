@@ -36,7 +36,37 @@ public class Pickup : MonoBehaviour {
                 }
                 CenterPoint.action = "Pick Up";
             }
+            if (hit.transform.gameObject.tag == "Weapon")
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Player.player.GetComponent<Player>().PickupWeapon();
+                    Destroy(hit.transform.gameObject);
+                }
+                CenterPoint.action = "Pick Up";
+            }
+            else if (hit.transform.gameObject.tag == "Shield")
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Player.player.GetComponent<Player>().PickupShield();
+                    Destroy(hit.transform.gameObject);
 
+                }
+                CenterPoint.action = "Pick Up";
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0) && !Player.defending)
+                    Player.attacking = true;
+                CenterPoint.action = null;
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0) && !Player.defending)
+                Player.attacking = true;
+            CenterPoint.action = null;
         }
     }
 }

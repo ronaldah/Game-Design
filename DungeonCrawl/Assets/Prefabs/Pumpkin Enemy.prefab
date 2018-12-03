@@ -98,7 +98,7 @@ Rigidbody:
   m_GameObject: {fileID: 1054877836150942}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 25
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -132,7 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
+  child: {fileID: 0}
   attackPower: 2
+  enemyKnockbackForce: 100
+  enemyKnockbackVector: {x: 0, y: 0, z: 0}
 --- !u!114 &114441415063145058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,19 +144,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1054877836150942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61be89b11f5ae4e758b140f85be8c4b9, type: 3}
+  m_Script: {fileID: 11500000, guid: c9b180a115860644082d73fa040247f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   range: 0
-  force: 200
+  force: 70
   maxSpeed: 8
   closeEnoughToHome: 2
-  closeEnoughToPlayer: 5
-  patrolTime: 3
   moveVect: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
+  scale_shift: 0
   rigid: {fileID: 0}
+  closeEnoughToPlayer: 5
+  patrolTime: 3
   anime: {fileID: 0}
 --- !u!135 &135595412663589644
 SphereCollider:

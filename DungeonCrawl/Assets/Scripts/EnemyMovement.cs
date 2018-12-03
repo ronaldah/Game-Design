@@ -62,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //Chase the player
+            //Creating a vector to chase the player
             moveVect = Player.transform.position - gameObject.transform.position;
             isHome = false;
             moveVect = Player.transform.position - gameObject.transform.position;
