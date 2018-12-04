@@ -8,6 +8,7 @@ TagManager:
   - Shield
   - Enemy
   - Item
+  - PlayerHealthBar
   layers:
   - Default
   - TransparentFX
