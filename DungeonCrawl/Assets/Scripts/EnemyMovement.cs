@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 temp = new Vector3(scale.x + scale_shift, scale.y + scale_shift, scale.z + scale_shift); 
+        Vector3 temp = new Vector3(scale.x + scale_shift, scale.y + scale_shift, scale.z + scale_shift);
         gameObject.transform.localScale = temp;
         if (goHome)
         {
@@ -62,7 +62,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //Chase the player
+            //Creating a vector to chase the player
             moveVect = Player.transform.position - gameObject.transform.position;
             isHome = false;
             moveVect = Player.transform.position - gameObject.transform.position;

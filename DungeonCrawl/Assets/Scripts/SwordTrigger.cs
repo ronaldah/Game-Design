@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +23,11 @@ public class SwordTrigger : MonoBehaviour {
         {
             print("EnemyCollision");
             collider.transform.GetComponent<Rigidbody>().AddExplosionForce(knockbackForce, gameObject.transform.position, knockbackRadius);
-            if (collider.transform.gameObject.tag == "Enemy")
+            if (collider.transform.gameObject.tag == "Enemy" ||
+                collider.transform.gameObject.tag == "Boss Blob" ||
+                collider.transform.gameObject.tag == "Large Blob" || 
+                collider.transform.gameObject.tag == "Blob" ||
+                collider.transform.gameObject.tag == "Pumpkin")
             {
                 print(collider.transform.GetComponent<Enemy>().hp);
                 collider.transform.GetComponent<Enemy>().HP -= Player.attackPower;

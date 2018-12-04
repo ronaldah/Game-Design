@@ -18,9 +18,10 @@ public class PlayerMovement : MonoBehaviour {
     float[] WASDTimer = new float[4];
     float WASDPressDelay = 0.5f;
     private float magnitudeForce = 0.709f;
+
 	// Use this for initialization
 	void Start () {
-		Cursor.visible = false;
+        
         rigidbody = GetComponent<Rigidbody>();
 	}
 	
@@ -29,8 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
             maxSpeed = maxWalkSpeed;
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		
         for (int i = 0; i < WASDPressed.Length; i++)
         {
             if (WASDTimer[i] >= WASDPressDelay)
@@ -62,13 +62,13 @@ public class PlayerMovement : MonoBehaviour {
         {
             moveVect += new Vector3(moveForce, 0, 0);
         }
-        if (Mathf.Abs(moveVect.x) + Mathf.Abs(moveVect.z) > moveForce)
+        if (Mathf.Abs(moveVect.x) + Mathf.Abs(moveVect.y) > moveForce)
         {
             moveVect = new Vector3(moveVect.x / magnitudeForce, 0, moveVect.z / magnitudeForce);
         }
 
         rigidbody.AddRelativeForce(moveVect * forceMod);
-        float velocityMagnitude = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z).magnitude;
+        float velocityMagnitude = rigidbody.velocity.magnitude;
 
         if (velocityMagnitude > maxSpeed)
         {

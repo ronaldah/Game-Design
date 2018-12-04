@@ -1,17 +1,26 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
     public float hp = 10;
+    public GameObject child;
     public float HP
     {
         get { return hp; }
         set {
             hp = value;
             if (hp <= 0)
+            {
+                if (gameObject.tag == "Boss Blob" || gameObject.tag == "Large Blob")
+                {
+                    GameObject L1 = Instantiate(child, transform.position, transform.rotation);
+                    GameObject L2 = Instantiate(child, transform.position, transform.rotation);
+                    GameObject L3 = Instantiate(child, transform.position, transform.rotation);
+                }
                 Destroy(gameObject);
+            }
         }
     }
     
