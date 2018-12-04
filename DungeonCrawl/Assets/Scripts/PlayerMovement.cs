@@ -26,18 +26,10 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
             maxSpeed = maxWalkSpeed;
-		
-        for (int i = 0; i < WASDPressed.Length; i++)
-        {
-            if (WASDTimer[i] >= WASDPressDelay)
-            {
-                WASDPressed[i] = false;
-            }
-        }
 
         moveVect = new Vector3(0, 0, 0);
         if (Input.GetKey(KeyCode.W))
@@ -66,7 +58,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             moveVect = new Vector3(moveVect.x / magnitudeForce, 0, moveVect.z / magnitudeForce);
         }
-
         rigidbody.AddRelativeForce(moveVect * forceMod);
         float velocityMagnitude = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z).magnitude;
 
