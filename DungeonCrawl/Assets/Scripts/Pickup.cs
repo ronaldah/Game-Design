@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -23,9 +23,6 @@ public class Pickup : MonoBehaviour {
         {
             if (hit.transform.gameObject.tag == "Item")
             {
-                CenterPoint.action = "Pick Up";
-
-                //Pick up Item
                 if (Input.GetMouseButtonDown(0))
                 {
           
@@ -33,19 +30,48 @@ public class Pickup : MonoBehaviour {
                     item = hit.transform.gameObject.GetComponent<Item>();
 
                     //Pick up item
-                    Debug.Log(Player.inventory);
-                    Player.inventory.AddItem(item);
-
-
+                    //Inventory.AddItem(item);
                     Debug.Log("Picking up " + item.itemName);
 
                     Destroy(hit.transform.gameObject);
                 }
+                CenterPoint.action = "Pick Up";
             }
+
+            /*
+            if (hit.transform.gameObject.tag == "Weapon")
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Player.player.GetComponent<Player>().PickupWeapon();
+                    Destroy(hit.transform.gameObject);
+                }
+                CenterPoint.action = "Pick Up";
+            }
+            else if (hit.transform.gameObject.tag == "Shield")
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Player.player.GetComponent<Player>().PickupShield();
+                    Destroy(hit.transform.gameObject);
+
+                }
+                CenterPoint.action = "Pick Up";
+            }
+            */
+
             else
             {
-                CenterPoint.action = "";
+                if (Input.GetMouseButtonDown(0) && !Player.defending)
+                    Player.attacking = true;
+                CenterPoint.action = null;
             }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0) && !Player.defending)
+                Player.attacking = true;
+            CenterPoint.action = null;
         }
     }
 }

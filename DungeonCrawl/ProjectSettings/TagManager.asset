@@ -8,6 +8,7 @@ TagManager:
   - Shield
   - Enemy
   - Item
+  - PlayerHealthBar
   - Inventory
   - GM
   - Helm

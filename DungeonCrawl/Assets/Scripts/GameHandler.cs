@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameHandler : MonoBehaviour {
 
     public HealthBar healthBar;
-    HealthSystem healthSystem = new HealthSystem(100);
+    //HealthSystem healthSystem = new HealthSystem(100);
     //public Transform pfHealthBar;
 
     // Use this for initialization
@@ -15,21 +15,21 @@ public class GameHandler : MonoBehaviour {
 
         //Transform healthBarTransform = Instantiate(pfHealthBar, new Vector3(0, 10), Quaternion.identity);
         //HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
-        healthBar.Setup(healthSystem);
-        healthSystem.Damage(50);
+        //healthBar.Setup(healthSystem);
+        //healthSystem.Damage(50);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
         {
-            healthSystem.Damage(10);
-            Debug.Log("Health Percent: " + healthSystem.GetHealthPercent());
+            //Player.HitPoints -= 1;
+            //Debug.Log("Health Percent: " + healthSystem.GetHealthPercent());
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            healthSystem.Heal(10);
-            Debug.Log("Health Percent: " + healthSystem.GetHealthPercent());
-        }
+            //Player.HitPoints += 1;
+            // Debug.Log("Health Percent: " + healthSystem.GetHealthPercent());
+        }*/
     }
 }

@@ -14,16 +14,19 @@ public class Player : MonoBehaviour {
     public static bool swinging = false;
     public static bool attacking = false;
     public static bool defending = false;
-    public static int hitPoints = 20;
+    static int hitPoints = 20;
+    public static int maxHp = 20;
     public static int attackPower = 5;
     public static int defensePower = 5;
-    public int hp;
+
+    public int hpDebugInfo;
 
     public static int HitPoints
         {
         get { return hitPoints; }
         set {
             hitPoints = value;
+            GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<HealthBar>().UpdateHPBar();
             if (hitPoints <= 0)
             {
                 Debug.Log(hitPoints);
@@ -34,18 +37,21 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<HealthBar>().UpdateHPBar();
         player = gameObject;
-        //inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+
+        //inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
         inven = GameObject.FindGameObjectWithTag("Inventory");
-       
         inventory = inven.GetComponent<Inventory>();
+
+        maxHp = hitPoints;
         sword = gameObject.transform.GetChild(0).GetChild(0).gameObject;
         shield = gameObject.transform.GetChild(0).GetChild(1).gameObject;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        hp = hitPoints;
+        hpDebugInfo = hitPoints;
 	}
 
     public void PickupWeapon()

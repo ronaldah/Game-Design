@@ -9,6 +9,8 @@ public class EnemyMovement : MonoBehaviour
     public float range = 0;
     public float force = 100f;
     public float maxSpeed = 8.0f;
+    public float movingSpeed = 8.0f;
+    public float attackSpeed = 16.0f;
     public float closeEnoughToHome = 2;
     public Vector3 moveVect;
     public Vector3 startPosition;
@@ -25,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        maxSpeed = movingSpeed;
         rigid = GetComponent<Rigidbody>();
         Player = GameObject.FindWithTag("Player");
         startPosition = gameObject.transform.position;
@@ -35,6 +38,8 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!anime.isPlaying)
+            maxSpeed = movingSpeed;
         Vector3 temp = new Vector3(scale.x + scale_shift, scale.y + scale_shift, scale.z + scale_shift);
         gameObject.transform.localScale = temp;
         if (goHome)
@@ -47,14 +52,18 @@ public class EnemyMovement : MonoBehaviour
                 isHome = true;
                 return;
             }
-            moveVect *= Time.deltaTime;
             moveVect /= moveVect.magnitude;
+            moveVect *= Time.deltaTime;
+            rigid.AddForce(moveVect * force);
+
             velMagnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
             if (velMagnitude > maxSpeed)
             {
-                rigid.velocity = rigid.velocity / velMagnitude * maxSpeed;
+                var yVel = rigid.velocity.y;
+                rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z) / velMagnitude * maxSpeed;
+                rigid.velocity += new Vector3(0, yVel, 0);
             }
-            rigid.AddRelativeForce(moveVect * force);
+            
         }
     }
 
@@ -62,23 +71,32 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //Chase the player
-            moveVect = Player.transform.position - gameObject.transform.position;
+            //Creating a vector to chase the player
+            moveVect = new Vector3(Player.transform.position.x - gameObject.transform.position.x, 0, 
+                                    Player.transform.position.z - gameObject.transform.position.z);
             isHome = false;
-            moveVect = Player.transform.position - gameObject.transform.position;
-            float x = moveVect.magnitude;
-            if (x < closeEnoughToPlayer)
-                moveVect = moveVect * Time.deltaTime;
-            moveVect /= moveVect.magnitude;
-            float magnitude = rigid.velocity.magnitude;
+            float moveVectMag = moveVect.magnitude;
+            moveVect.Normalize();
+            moveVect *= Time.deltaTime;
+            rigid.AddForce(moveVect * force);
+    
+            float magnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
             if (magnitude > maxSpeed)
             {
-                rigid.velocity = rigid.velocity / magnitude * maxSpeed;
+                Debug.Log(rigid.velocity + "vel");
+                var yVel = rigid.velocity.y;
+                var newVel = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
+                newVel.Normalize();
+                rigid.velocity = newVel * maxSpeed;
+                rigid.velocity += new Vector3(0, yVel, 0);
+                Debug.Log(rigid.velocity + "NewVel");
             }
-            rigid.AddRelativeForce(moveVect * force);
-            if (x < closeEnoughToPlayer)
+
+            if (moveVectMag < closeEnoughToPlayer)
             {
                 //Play attack animation
+                rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+                maxSpeed = attackSpeed;
                 anime.Play();
                 if (gameObject.tag == "Pumpkin")
                 {
