@@ -9,6 +9,11 @@ TagManager:
   - Enemy
   - Item
   - Inventory
+  - GM
+  - Helm
+  - Chest
+  - Bow
+  - Inventoryy
   layers:
   - Default
   - TransparentFX

@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: fb93d4e4186feec44a2bc610b9c1c24a
-  - enabled: 1
-    path: Assets/Scenes/UI TEST.unity
+  - enabled: 0
+    path: Assets/Scenes/IslandOfRisingDarkness.unity
     guid: 6514f6524dfe2274686559defe1f7b3d
   m_configObjects: {}

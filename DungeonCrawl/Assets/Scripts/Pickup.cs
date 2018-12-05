@@ -41,56 +41,11 @@ public class Pickup : MonoBehaviour {
 
                     Destroy(hit.transform.gameObject);
                 }
-            }    
-        }
-    }
-}
-
-/*
- //Drop Item
-                if (Input.GetMouseButtonDown(1))
-                {
-                    //Get raycasted gameObject to an Item object
-                    item = hit.transform.gameObject.GetComponent<Item>();
-
-                    Debug.Log("Dropping: " + item.itemName);
-                    Player.inventory.RemoveItem(item);
-                }
-*/
-
-/*
-
-
-            if (hit.transform.gameObject.tag == "Weapon")
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Player.player.GetComponent<Player>().PickupWeapon();
-                    Destroy(hit.transform.gameObject);
-                }
-                CenterPoint.action = "Pick Up";
-            }
-            else if (hit.transform.gameObject.tag == "Shield")
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Player.player.GetComponent<Player>().PickupShield();
-                    Destroy(hit.transform.gameObject);
-                }
-                CenterPoint.action = "Pick Up";
             }
             else
             {
-                if (Input.GetMouseButtonDown(0) && !Player.defending)
-                    Player.attacking = true;
-                CenterPoint.action = null;
+                CenterPoint.action = "";
             }
-        }
-        else {
-            if (Input.GetMouseButtonDown(0) && !Player.defending)
-                Player.attacking = true;
-            CenterPoint.action = null;
         }
     }
 }
-*/
