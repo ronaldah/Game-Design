@@ -145,7 +145,6 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: de6011b0ae15847a5a58dc0020f196bb, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: c3c1db5a0df92480cb48670362dcff2c, type: 2}
   - {fileID: 7400000, guid: de6011b0ae15847a5a58dc0020f196bb, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
@@ -180,15 +179,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   range: 0
-  force: 100
+  force: 3000
   maxSpeed: 8
+  movingSpeed: 8
+  attackSpeed: 16
   closeEnoughToHome: 10
   moveVect: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
   scale: {x: 0, y: 0, z: 0}
   scale_shift: 0
   rigid: {fileID: 0}
-  closeEnoughToPlayer: 15
+  closeEnoughToPlayer: 25
   patrolTime: 3
   anime: {fileID: 0}
 --- !u!135 &135475057569916216
