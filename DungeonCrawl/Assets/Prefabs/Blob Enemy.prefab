@@ -163,8 +163,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   range: 0
-  force: 5000
+  force: 3000
   maxSpeed: 8
+  movingSpeed: 8
+  attackSpeed: 16
   closeEnoughToHome: 2
   moveVect: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}

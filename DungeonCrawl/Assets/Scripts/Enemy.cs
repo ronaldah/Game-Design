@@ -6,7 +6,12 @@ public class Enemy : MonoBehaviour {
 
     public float hp = 10;
     public GameObject child;
+    bool bossSlain = false;
+    float largeBlobCount = 3;
+    float blobCount = 9;
+
     public float HP
+
     {
         get { return hp; }
         set {
@@ -18,6 +23,25 @@ public class Enemy : MonoBehaviour {
                     GameObject L1 = Instantiate(child, transform.position, transform.rotation);
                     GameObject L2 = Instantiate(child, transform.position, transform.rotation);
                     GameObject L3 = Instantiate(child, transform.position, transform.rotation);
+                }
+                if (gameObject.tag == "Boss Blob")
+                {
+                    bossSlain = true;
+                }
+                if (bossSlain)
+                {
+                    if (gameObject.tag == "Large Blob")
+                    {
+                        largeBlobCount--;
+                    }
+                    else if (gameObject.tag == "Blob")
+                    {
+                        blobCount--;
+                    }
+                    if (largeBlobCount <= 0 && blobCount <= 0)
+                    {
+                        //Display "You Win!" screen
+                    }
                 }
                 Destroy(gameObject);
             }
