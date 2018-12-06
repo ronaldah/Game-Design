@@ -20,7 +20,9 @@ public class Inventory : MonoBehaviour
             for (int j = 0; j < g.childCount; j++)
             {
                 if (g.GetChild(j).tag == "Item")
+                {
                     itemGameObjects[i] = g.GetChild(j).gameObject;
+                }
             }
         }
     }
@@ -36,7 +38,9 @@ public class Inventory : MonoBehaviour
             {
                 item.CreateItem(itemToAdd);
 
-                itemGameObjects[i].GetComponent<Image>().sprite = item.icon;
+                Image image = itemGameObjects[i].GetComponent<Image>();
+                image.sprite = item.icon;
+                image.color = new Color(255, 255, 255, 1f);
                 return;
             }
         }
@@ -44,13 +48,13 @@ public class Inventory : MonoBehaviour
     //Remove item from inventory
     public void RemoveItem(Item itemToRemove)
     {
-        Debug.Log("REMOVING " + itemToRemove.itemName);
+        Debug.Log("REMOVING " + itemToRemove.itemNumber);
 
         //Change Inventory Sprite back to the Blank Slot
         itemToRemove.GetComponent<Image>().sprite = blankSlot;
 
         //Remove Item
         Item item = itemToRemove.GetComponent<Item>();
-        item.NullItem(itemToRemove);
+        //item.NullItem(itemToRemove);
     }
 }

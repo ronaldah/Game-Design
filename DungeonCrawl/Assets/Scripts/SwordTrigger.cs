@@ -22,7 +22,9 @@ public class SwordTrigger : MonoBehaviour {
         if (collider.transform.gameObject.tag != "Player" && collider.transform.gameObject.tag != "Untagged" && Player.swinging)
         {
             print("EnemyCollision");
-            collider.transform.GetComponent<Rigidbody>().AddExplosionForce(knockbackForce, gameObject.transform.position, knockbackRadius);
+            var knockbackDirection = collider.transform.position - gameObject.transform.position ;
+            knockbackDirection.Normalize();
+            collider.transform.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce);
             if (collider.transform.gameObject.tag == "Enemy" ||
                 collider.transform.gameObject.tag == "Boss Blob" ||
                 collider.transform.gameObject.tag == "Large Blob" || 

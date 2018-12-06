@@ -15,6 +15,11 @@ TagManager:
   - Chest
   - Bow
   - Inventoryy
+  - Pumpkin
+  - Large Blob
+  - Boss Blob
+  - Blob
+  - Potion
   layers:
   - Default
   - TransparentFX

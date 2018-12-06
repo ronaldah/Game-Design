@@ -28,7 +28,7 @@ public class Equip : MonoBehaviour {
     //Remove item from inventory
     public void RemoveItem(Item itemToRemove)
     {
-        Debug.Log("REMOVING Equip " + itemToRemove.itemName);
+        Debug.Log("REMOVING Equip " + itemToRemove.itemNumber);
 
         if (itemToRemove.type == "Shield")
         {
@@ -46,13 +46,13 @@ public class Equip : MonoBehaviour {
 
         //Remove Item
         Item item = itemToRemove.GetComponent<Item>();
-        item.NullItem(itemToRemove);
+        //item.NullItem(itemToRemove);
         
     }
 
     public void EquipItem(Item itemToEquip)
     {
-        Debug.Log("Equip " + itemToEquip.itemName);
+        Debug.Log("Equip " + itemToEquip.itemNumber);
         
         //Helm Equip Slot
         if (itemToEquip.type == "Helm")
@@ -75,7 +75,7 @@ public class Equip : MonoBehaviour {
             equipment[3].GetComponent<Image>().sprite = itemToEquip.icon;
             Item item = equipment[3].GetComponent<Item>();
             item.CreateItem(itemToEquip);
-            Player.player.GetComponent<Player>().PickupShield();
+            Player.player.GetComponent<Player>().EquipShield();
         }
         
         //Weapon Equip Slot
@@ -84,7 +84,7 @@ public class Equip : MonoBehaviour {
             equipment[4].GetComponent<Image>().sprite = itemToEquip.icon;
             Item item = equipment[4].GetComponent<Item>();
             item.CreateItem(itemToEquip);
-            Player.player.GetComponent<Player>().PickupWeapon();
+            //Player.player.GetComponent<Player>().EquipWeapon();
         }
            //Item Equip Slot
         if(itemToEquip.type == "Item")

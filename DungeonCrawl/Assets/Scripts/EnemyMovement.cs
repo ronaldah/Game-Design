@@ -83,13 +83,11 @@ public class EnemyMovement : MonoBehaviour
             float magnitude = new Vector2(rigid.velocity.x, rigid.velocity.z).magnitude;
             if (magnitude > maxSpeed)
             {
-                Debug.Log(rigid.velocity + "vel");
                 var yVel = rigid.velocity.y;
                 var newVel = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
                 newVel.Normalize();
                 rigid.velocity = newVel * maxSpeed;
                 rigid.velocity += new Vector3(0, yVel, 0);
-                Debug.Log(rigid.velocity + "NewVel");
             }
 
             if (moveVectMag < closeEnoughToPlayer)

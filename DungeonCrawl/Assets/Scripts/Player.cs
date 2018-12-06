@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public static Inventory inventory;
     public static GameObject player;
     public static GameObject sword;
     public static GameObject shield;
@@ -16,9 +15,11 @@ public class Player : MonoBehaviour {
     public static bool defending = false;
     static int hitPoints = 20;
     public static int maxHp = 20;
+    public int baseAttackPower = 2;
     public static int attackPower = 5;
     public static int defensePower = 5;
-
+    public static int equipedWeapon = -1;
+    public static int equipedShield = -1;
     public int hpDebugInfo;
 
     public static int HitPoints
@@ -40,10 +41,6 @@ public class Player : MonoBehaviour {
         GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<HealthBar>().UpdateHPBar();
         player = gameObject;
 
-        //inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-        inven = GameObject.FindGameObjectWithTag("Inventory");
-        inventory = inven.GetComponent<Inventory>();
-
         maxHp = hitPoints;
         sword = gameObject.transform.GetChild(0).GetChild(0).gameObject;
         shield = gameObject.transform.GetChild(0).GetChild(1).gameObject;
@@ -54,13 +51,21 @@ public class Player : MonoBehaviour {
         hpDebugInfo = hitPoints;
 	}
 
-    public void PickupWeapon()
+    public void EquipWeapon(int weaponNumber)
     {
-        sword.GetComponentInChildren<MeshRenderer>().enabled = true;
+        if (equipedWeapon >= 0)
+        {
+            var g = sword.transform.GetChild(equipedWeapon);
+            g.GetComponent<MeshRenderer>().enabled = false;
+            GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().AddItem(g.GetComponent<Item>());
+        }
+        attackPower = baseAttackPower * (weaponNumber + 1);
+        sword.transform.GetChild(weaponNumber).GetComponent<MeshRenderer>().enabled = true;
+        equipedWeapon = weaponNumber;
         hasSword = true;
     }
 
-    public void PickupShield()
+    public void EquipShield()
     {
         shield.GetComponent<BoxCollider>().enabled = true;
         shield.GetComponent<MeshRenderer>().enabled = true;

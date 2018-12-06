@@ -9,10 +9,12 @@ public class Pickup : MonoBehaviour {
     public int rayDistance = 5;
     Item item;
     Player player;
+    Inventory inventory;
 
     // Use this for initialization
     void Start() {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
     }
 
     // Update is called once per frame
@@ -21,7 +23,7 @@ public class Pickup : MonoBehaviour {
         
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, rayDistance))
         {
-            if (hit.transform.gameObject.tag == "Item")
+            if (hit.transform.gameObject.tag == "Weapon" || hit.transform.gameObject.tag == "Shield" || hit.transform.gameObject.tag == "Potion")
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -30,8 +32,8 @@ public class Pickup : MonoBehaviour {
                     item = hit.transform.gameObject.GetComponent<Item>();
 
                     //Pick up item
-                    //Inventory.AddItem(item);
-                    Debug.Log("Picking up " + item.itemName);
+                    inventory.AddItem(item);
+                    Debug.Log("Picking up " + item.itemNumber);
 
                     Destroy(hit.transform.gameObject);
                 }
