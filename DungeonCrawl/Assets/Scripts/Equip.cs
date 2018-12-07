@@ -7,6 +7,7 @@ public class Equip : MonoBehaviour {
     public int numEquipSlots = 5;
     public GameObject[] equipment;
     public Sprite blankSlot;
+    public Inventory inven;
 
     // Use this for initialization
     void Start () {
@@ -22,13 +23,11 @@ public class Equip : MonoBehaviour {
                     equipment[i] = g.GetChild(j).gameObject;
             }
         }
-        
     }
 
     //Remove item from inventory
     public void RemoveItem(Item itemToRemove)
     {
-        Debug.Log("REMOVING Equip " + itemToRemove.itemNumber);
 
         if (itemToRemove.type == "Shield")
         {
@@ -46,7 +45,7 @@ public class Equip : MonoBehaviour {
 
         //Remove Item
         Item item = itemToRemove.GetComponent<Item>();
-        //item.NullItem(itemToRemove);
+        item.NullItem(itemToRemove);
         
     }
 
@@ -81,10 +80,27 @@ public class Equip : MonoBehaviour {
         //Weapon Equip Slot
         if (itemToEquip.type == "Weapon")
         {
+            
+            //Checks if Slot is already taken
+            if (equipment[4].GetComponent<Item>().icon != null)
+            {
+                inven.AddItem(equipment[4].GetComponent<Item>()); 
+            }
+            
+            //Equip Item
             equipment[4].GetComponent<Image>().sprite = itemToEquip.icon;
             Item item = equipment[4].GetComponent<Item>();
             item.CreateItem(itemToEquip);
-            //Player.player.GetComponent<Player>().EquipWeapon();
+
+            //Weapons
+            if (item.itemNumber == 0)
+            {
+                Player.player.GetComponent<Player>().EquipWeapon(0);
+            }
+            if (item.itemNumber == 1)
+            {
+                Player.player.GetComponent<Player>().EquipWeapon(1);
+            }
         }
            //Item Equip Slot
         if(itemToEquip.type == "Item")

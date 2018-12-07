@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class Item : MonoBehaviour {
 
+    public string itemName;
     public string itemType;
     public Sprite icon; //Icon of item
     public int itemNumber; //Name of Item
@@ -13,14 +14,14 @@ public class Item : MonoBehaviour {
     public int maxStack; //Max times the item can be stacked
     public Image image;
     public string type; //Type of item
-    public Button button;
+    //public Button button;
 
     void Start()
     {
-        button = gameObject.GetComponent<Button>();
+        //button = gameObject.GetComponent<Button>();
         image = gameObject.GetComponent<Image>();
         itemType = gameObject.tag;
-        button.onClick.AddListener(EquipItem);
+        //button.onClick.AddListener(EquipItem);
     }
 
     public void CreateItem(Item item)
@@ -32,6 +33,16 @@ public class Item : MonoBehaviour {
         //im = item.im;
         type = item.type;
         itemType = item.itemType;
+    }
+    public void NullItem(Item item)
+    {
+        itemName = null;
+        icon = null;
+        itemNumber = 0;
+        cost = 0;
+        maxStack = 0;
+        //im = null;
+        type = "";
     }
 
     public void EquipItem()

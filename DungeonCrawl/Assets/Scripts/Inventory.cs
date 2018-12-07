@@ -38,9 +38,7 @@ public class Inventory : MonoBehaviour
             {
                 item.CreateItem(itemToAdd);
 
-                Image image = itemGameObjects[i].GetComponent<Image>();
-                image.sprite = item.icon;
-                image.color = new Color(255, 255, 255, 1f);
+                itemGameObjects[i].GetComponent<Image>().sprite = item.icon;
                 return;
             }
         }
@@ -55,6 +53,6 @@ public class Inventory : MonoBehaviour
 
         //Remove Item
         Item item = itemToRemove.GetComponent<Item>();
-        //item.NullItem(itemToRemove);
+        item.NullItem(itemToRemove);
     }
 }

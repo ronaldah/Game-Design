@@ -57,7 +57,7 @@ public class Player : MonoBehaviour {
         {
             var g = sword.transform.GetChild(equipedWeapon);
             g.GetComponent<MeshRenderer>().enabled = false;
-            GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().AddItem(g.GetComponent<Item>());
+            //GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().AddItem(g.GetComponent<Item>());
         }
         attackPower = baseAttackPower * (weaponNumber + 1);
         sword.transform.GetChild(weaponNumber).GetComponent<MeshRenderer>().enabled = true;
