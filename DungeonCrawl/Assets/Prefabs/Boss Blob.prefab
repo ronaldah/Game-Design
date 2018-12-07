@@ -43,7 +43,7 @@ Transform:
   m_GameObject: {fileID: 1567147064314510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.597267, y: 8, z: 55.1621}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,7 +104,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65941625558254272
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -143,9 +143,10 @@ Animation:
   m_GameObject: {fileID: 1567147064314510}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: de6011b0ae15847a5a58dc0020f196bb, type: 2}
+  m_Animation: {fileID: 7400000, guid: 35512edd584c541a8bed55c0aeebb947, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: de6011b0ae15847a5a58dc0020f196bb, type: 2}
+  - {fileID: 7400000, guid: 35512edd584c541a8bed55c0aeebb947, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -177,9 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b180a115860644082d73fa040247f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  ThePlayer: {fileID: 0}
   range: 0
-  force: 3000
+  force: 2000
   maxSpeed: 8
   movingSpeed: 8
   attackSpeed: 16
@@ -188,10 +189,13 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   scale: {x: 0, y: 0, z: 0}
   scale_shift: 0
+  attackRange: 15
   rigid: {fileID: 0}
-  closeEnoughToPlayer: 25
+  closeEnoughToPlayer: 20
   patrolTime: 3
+  attacking: 0
   anime: {fileID: 0}
+  flex: {fileID: 0}
 --- !u!135 &135475057569916216
 SphereCollider:
   m_ObjectHideFlags: 1

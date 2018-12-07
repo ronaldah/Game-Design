@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    public GameObject Player;
+    public GameObject ThePlayer;
     public float range = 0;
     public float force = 100f;
     public float maxSpeed = 8.0f;
@@ -16,23 +16,28 @@ public class EnemyMovement : MonoBehaviour
     public Vector3 startPosition;
     public Vector3 scale;
     public float scale_shift = 0;
+    public float attackRange = 5;
     public Rigidbody rigid;
     public float closeEnoughToPlayer = 5;
     public float patrolTime = 3;
     bool goHome = false;
     bool isHome = true;
+    bool beenHit;
+    public bool attacking = false;
     public Animation anime;
     float velMagnitude;
+    public CapsuleCollider flex;
 
     // Use this for initialization
     void Start()
     {
+        ThePlayer = GameObject.FindWithTag("Player");
         maxSpeed = movingSpeed;
         rigid = GetComponent<Rigidbody>();
-        Player = GameObject.FindWithTag("Player");
         startPosition = gameObject.transform.position;
         anime = GetComponent<Animation>();
         scale = gameObject.transform.localScale;
+        flex = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -72,8 +77,8 @@ public class EnemyMovement : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //Creating a vector to chase the player
-            moveVect = new Vector3(Player.transform.position.x - gameObject.transform.position.x, 0, 
-                                    Player.transform.position.z - gameObject.transform.position.z);
+            moveVect = new Vector3(ThePlayer.transform.position.x - gameObject.transform.position.x, 0, 
+                                    ThePlayer.transform.position.z - gameObject.transform.position.z);
             isHome = false;
             float moveVectMag = moveVect.magnitude;
             moveVect.Normalize();
@@ -100,6 +105,10 @@ public class EnemyMovement : MonoBehaviour
                 {
                     StartCoroutine(ExplodingPumpkin());
                 }
+                if (moveVectMag < attackRange)
+                {
+                    StartCoroutine(BlobFlex());
+                }
             }
         }
     }
@@ -115,5 +124,28 @@ public class EnemyMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
+    }
+    IEnumerator BlobFlex()
+    {
+        yield return new WaitForSeconds(1);
+        attacking = true;
+        yield return new WaitForSeconds(0.5f);
+        attacking = false;
+        if (!beenHit)
+        {
+            if (attacking)
+            {
+                int damage = gameObject.GetComponent<Enemy>().attackPower;
+                if (Player.defending)
+                    damage = Mathf.Clamp(damage - Player.defensePower, 1, 999999);
+                Player.HitPoints -= damage;
+                Vector3 enemyKnockbackVector = Player.player.transform.position - gameObject.transform.position;
+                enemyKnockbackVector.Normalize();
+                Player.player.GetComponent<Rigidbody>().AddForce(enemyKnockbackVector * gameObject.GetComponent<Enemy>().enemyKnockbackForce);
+                beenHit = true;
+                yield return new WaitForSeconds(2);
+                beenHit = false;
+            }
+        }
     }
 }

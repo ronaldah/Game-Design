@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour
             //Find free inventory slot
             if (item.icon == null)
             {
+                Debug.Log("CreateItem");
                 item.CreateItem(itemToAdd);
 
                 itemGameObjects[i].GetComponent<Image>().sprite = item.icon;

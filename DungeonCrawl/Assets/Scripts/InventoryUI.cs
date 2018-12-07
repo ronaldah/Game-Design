@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour {
     
@@ -11,6 +12,7 @@ public class InventoryUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        openInventory();
         closeInventory();
     }
 
@@ -35,7 +37,12 @@ public class InventoryUI : MonoBehaviour {
 
     public void closeInventory()
     {
-        inventoryUI.SetActive(false);
+        var inventory = inventoryUI.transform.Find("Inventory");
+        inventoryUI.GetComponent<Image>().enabled = false;
+        for (int i = 0; i < inventory.childCount; i++)
+        {
+            inventory.GetChild(i).GetComponentInChildren<Image>().enabled = false;
+        }
         //Time.timeScale = 1f;
         inventoryVisible = false;
 
@@ -45,7 +52,12 @@ public class InventoryUI : MonoBehaviour {
     }
     public void openInventory()
     {
-        inventoryUI.SetActive(true);
+        var inventory = inventoryUI.transform.Find("Inventory");
+        inventoryUI.GetComponent<Image>().enabled = true;
+        for (int i = 0; i < inventory.childCount; i++)
+        {
+            inventory.GetChild(i).GetComponentInChildren<Image>().enabled = true;
+        }
         //Time.timeScale = 0f;
         inventoryVisible = true;
 
