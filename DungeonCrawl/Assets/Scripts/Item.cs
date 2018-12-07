@@ -20,7 +20,8 @@ public class Item : MonoBehaviour {
         button = gameObject.GetComponent<Button>();
         image = gameObject.GetComponent<Image>();
         itemType = gameObject.tag;
-        button.onClick.AddListener(EquipItem);
+        if (button != null)
+            button.onClick.AddListener(EquipItem);
     }
 
     public void CreateItem(Item item)
